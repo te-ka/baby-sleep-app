@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赤ちゃん寝かしつけアプリ</title>
+  <meta name="description" content="ポリー・ムーアの90分周期理論に基づいた赤ちゃんの寝かしつけをサポートするアプリ">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- PWA対応のためのマニフェストとアイコン -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
+</head>
+<body class="bg-gray-100">
+  <div id="root"></div>
+
+  <!-- React と ReactDOM をCDNから読み込み -->
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- アプリケーションコード -->
+  <script type="text/babel" src="app.js"></script>
+
+  <!-- PWA対応のためのサービスワーカー登録 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker 登録成功:', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker 登録失敗:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
